@@ -53,5 +53,5 @@ No environment variables are required — all data is static/mock data in `lib/d
 ## Notes
 
 - All dashboard, testimonial, and social-proof names are mock/demo data; no real company is claimed as a customer.
-- Auth pages are UI only: social buttons do not start a real OAuth flow and no account is created.
+- Auth pages are demo only: no real OAuth flow runs and no account is created, but signing in or signing up (including via the GitHub/Google buttons) shows a confirmation and takes you to the dashboard preview, with a demo session flag stored in localStorage.
 - Accuracy claims on the Features page are framed as internal platform benchmarks, not third-party certification.

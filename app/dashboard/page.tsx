@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { AlertTriangle, CheckCircle2, Clock, GitPullRequest, LayoutDashboard, Settings, ShieldCheck } from "lucide-react";
@@ -14,6 +15,14 @@ const NAV = [
 ];
 
 export default function DashboardPage() {
+  const [signedInDemo, setSignedInDemo] = useState(false);
+  useEffect(() => {
+    try {
+      setSignedInDemo(window.localStorage.getItem("codes entinel-demo-session") === "1");
+    } catch {
+      setSignedInDemo(false);
+    }
+  }, []);
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="grid gap-6 lg:grid-cols-[220px_1fr]">
@@ -27,6 +36,9 @@ export default function DashboardPage() {
           <p className="mt-6 px-2 text-xs leading-relaxed text-zinc-500">Static demo dashboard — data is mock data for preview purposes.</p>
         </aside>
         <div>
+          {signedInDemo && (
+            <p role="status" className="mb-4 rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-3 text-sm text-cyan-200">Signed in (demo) — you are viewing the dashboard preview. No real account was created.</p>
+          )}
           <h1 className="text-2xl font-bold text-white">Security overview</h1>
           <p className="mt-1 text-sm text-zinc-400">All repositories · Last 7 days</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
